@@ -1,19 +1,38 @@
-import xlwt
-#初始化一个excel
-excel = xlwt.Workbook(encoding='utf-8')
-#新建一个sheet
-sheet = excel.add_sheet('xlwt_sheet1')
-#设置样式
-style = xlwt.XFStyle()#初始化样式
-font = xlwt.Font()#创建字体
-font.name = u'微软雅黑' #字体类型
-font.colour_index = 6   #字体颜色
-font.underline = True #下划线
-font.italic = True #斜体
-font.height = 400    #字体大小   200等于excel字体大小中的10
-style.font = font   #设定样式
+import  xlwt
+#初始化一个Excel
+f = xlwt.Workbook(encoding='utf-8')
 
-sheet.write(0,0,'test')     #写入不带字体样式的内容
-sheet.write(1,0,'test',style)   #写入带字体样式的内容
-excel.save('C:/Users/ms/Desktop/test_xlwt.xls') # 保存
+#新建一个sheet
+sheet1 = f.add_sheet('xlwt_sheet1',cell_overwrite_ok=True)
+sheet2 = f.add_sheet('xlwt_sheet2',cell_overwrite_ok=True)
+sheet3 = f.add_sheet('xlwt_sheet3',cell_overwrite_ok=True)
+
+#设置样式
+style = xlwt.XFStyle() #初始化样式
+font = xlwt.Font()#创建字体
+font.name = u'微软雅黑'#字体类型
+font.colour_index = 6#字体颜色
+font.italic = True#下划线
+font.height = 400 #字体大小 200等于Excel字体中的10
+style.font = font #设定样式
+
+sheet1.write(0,0,'test') #写入不带字体样式的内容
+sheet1.write(1,0,'test',style) #写入带字体样式的内容
+
+row = 0
+temp = ['姓名','年龄学校','专业']
+for pos,v in enumerate(temp):
+     sheet1.write(row,pos,v)
+row += 1
+sheet3.write(row,0,'aa')
+sheet3.write(row,1,18)
+sheet3.write(row,2,'哈佛大学')
+
+row += 1
+sheet2.write(row,0,'何欢')
+sheet2.write(row,1,28)
+sheet2.write(row,2,'香港大学')
+
+#f.save('test_xlwt')
+f.save('C:/Users/Administrator/Desktop/test_xlwt.xls')
 
